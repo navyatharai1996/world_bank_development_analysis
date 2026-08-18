@@ -57,5 +57,5 @@ dist/
 *.db
 *.sqlite
 
-# Microsoft Office Temporary Files
-~$*
+# Cleaned datasets
+data/cleaned/*.csv
