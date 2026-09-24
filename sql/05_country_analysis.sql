@@ -113,3 +113,14 @@ where wb.country_code IN("IND","AUS","NZl")
 AND wb.year=2024
 and wb.indicator_code="NY.GDP.MKTP.CD"
 order by wb.value desc;
+
+-- 3-Year Moving Average of India's GDP
+SELECT year, ROUND(value / 1000000000, 2) AS GDP_Billion,
+    ROUND(
+        AVG(value) OVER(
+            ORDER BY year
+            ROWS BETWEEN 2 PRECEDING AND CURRENT ROW ) / 1000000000, 2) AS GDP_3Y_Moving_Avg
+FROM world_bank
+WHERE country_code = 'IND'
+AND indicator_code = 'NY.GDP.MKTP.CD'
+ORDER BY year;
